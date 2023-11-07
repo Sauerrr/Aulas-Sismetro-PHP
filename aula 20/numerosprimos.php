@@ -1,18 +1,29 @@
 <?php
 
-function primos($p){
-    $sequencia = array();
-    $sequencia[0] = 1;
-    $sequencia[1] = 1;
+function numero_primo($posicao){
+   $primos = array(2);
 
-    for($i = 2; $i < $p; $i++){
-        $sequencia[$i] =  $sequencia[$i-1] + $sequencia[$i - 2];
+   $n = 3;
+
+   while(count($primos) < $posicao){
+    $e_primo = true;
+    foreach($primos as $primo){
+        if($n%$primo == 0){
+            $e_primo = false;
+            
+        }
     }
-
-    return $sequencia[$p-1];
+    if($e_primo){
+        $primos[] = $n;
+    }
+    $n++;
+   }
+   return $primos[$posicao - 1];
 }
 
-echo primos(30);
+
+
+echo numero_primo($_GET["posicao"]);
     
 
 ?>
